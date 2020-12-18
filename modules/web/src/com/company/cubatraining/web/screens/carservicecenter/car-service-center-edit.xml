@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://carServiceCenterEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.cubatraining.web.screens.carservicecenter">
+    <data>
+        <instance id="carServiceCenterDc"
+                  class="com.company.cubatraining.entity.CarServiceCenter">
+            <view extends="_local">
+                <property name="city" view="_minimal"/>
+                <property name="employees" view="_minimal">
+                    <property name="birthDate"/>
+                    <property name="email"/>
+                    <property name="salary"/>
+                </property>
+                <property name="customer" view="_minimal">
+                    <property name="phone"/>
+                    <property name="email"/>
+                </property>
+            </view>
+            <loader/>
+            <collection id="customerDc" property="customer"/>
+        </instance>
+        <collection id="citiesDc" class="com.company.cubatraining.entity.City" view="_minimal">
+            <loader id="citiesDl">
+                <query>
+                    <![CDATA[select e from cubatraining_City e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="carServiceCenterDc">
+            <column width="350px">
+                <textField id="nameServiceField" property="nameService"/>
+                <textField id="phoneField" property="phone"/>
+                <lookupPickerField id="cityField" optionsContainer="citiesDc" property="city"/>
+                <textField id="addressField" property="address"/>
+            </column>
+        </form>
+        <groupBox id="customerBox" caption="msg://com.company.cubatraining.entity/CarServiceCenter.customer">
+            <table id="customerTable" dataContainer="customerDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="phone"/>
+                    <column id="email"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="customerTable.add"/>
+                    <button action="customerTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

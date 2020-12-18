@@ -5,5 +5,9 @@
         <class>com.company.cubatraining.entity.Customer</class>
         <class>com.company.cubatraining.entity.Company</class>
         <class>com.company.cubatraining.entity.Individual</class>
+        <class>com.company.cubatraining.entity.City</class>
+        <class>com.company.cubatraining.entity.Employee</class>
+        <class>com.company.cubatraining.entity.CarServiceCenter</class>
+        <class>com.company.cubatraining.entity.Repair</class>
     </persistence-unit>
 </persistence>

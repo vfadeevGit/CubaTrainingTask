@@ -1,0 +1,59 @@
+package com.company.cubatraining.entity;
+
+import com.haulmont.chile.core.annotations.Composition;
+import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+@Table(name = "CUBATRAINING_REPAIR")
+@Entity(name = "cubatraining_Repair")
+@NamePattern("%s|description")
+public class Repair extends StandardEntity {
+    private static final long serialVersionUID = -2307046670080191116L;
+
+    @NotNull
+    @Column(name = "DESCRIPTION", nullable = false)
+    private String description;
+
+    @NotNull
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "CENTER_ID")
+    private CarServiceCenter center;
+
+    @NotNull
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "EMPLOYEE_ID")
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public CarServiceCenter getCenter() {
+        return center;
+    }
+
+    public void setCenter(CarServiceCenter center) {
+        this.center = center;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}

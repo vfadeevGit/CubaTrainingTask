@@ -3,5 +3,8 @@
     <menu id="application-cubatraining" insertBefore="administration" caption="mainMsg://menu_config.application-cubatraining">
         <item screen="cubatraining_Company.browse" caption="mainMsg://menu_config.cubatraining_Company.browse"/>
         <item screen="cubatraining_Individual.browse" caption="mainMsg://menu_config.cubatraining_Individual.browse"/>
+        <item screen="cubatraining_City.browse" caption="mainMsg://menu_config.cubatraining_City.browse"/>
+        <item screen="cubatraining_CarServiceCenter.browse"
+              caption="mainMsg://menu_config.cubatraining_CarServiceCenter.browse"/>
     </menu>
 </menu-config>

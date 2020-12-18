@@ -2,5 +2,8 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="CubaTrainingTask" transaction-type="RESOURCE_LOCAL">
 
+        <class>com.company.cubatraining.entity.Customer</class>
+        <class>com.company.cubatraining.entity.Company</class>
+        <class>com.company.cubatraining.entity.Individual</class>
     </persistence-unit>
 </persistence>

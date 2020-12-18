@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @javax.persistence.DiscriminatorValue("COMP")
 @Table(name = "CUBATRAINING_COMPANY")
-@Entity(name = "cubatraining_Companz")
+@Entity(name = "cubatraining_Company")
 @NamePattern("%s|inn")
 @PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Company extends Customer {

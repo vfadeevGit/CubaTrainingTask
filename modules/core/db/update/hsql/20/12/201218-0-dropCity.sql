@@ -1,0 +1,1 @@
+alter table CUBATRAINING_CITY rename to CUBATRAINING_CITY__U89040 ;

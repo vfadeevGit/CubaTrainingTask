@@ -1,0 +1,1 @@
+drop table CUBATRAINING_CITY__U89040 if exists cascade ;

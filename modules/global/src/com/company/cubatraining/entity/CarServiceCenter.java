@@ -1,9 +1,12 @@
 package com.company.cubatraining.entity;
 
+import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -41,6 +44,19 @@ public class CarServiceCenter extends StandardEntity {
             inverseJoinColumns = @JoinColumn(name = "CUSTOMER_ID"))
     @ManyToMany
     private List<Customer> customer;
+
+    @Composition
+    @OnDelete(DeletePolicy.CASCADE)
+    @OneToMany(mappedBy = "carServiceCenter")
+    private List<Repair> repair;
+
+    public List<Repair> getRepair() {
+        return repair;
+    }
+
+    public void setRepair(List<Repair> repair) {
+        this.repair = repair;
+    }
 
     public List<Employee> getEmployees() {
         return employees;

@@ -4,4 +4,28 @@
     <view entity="cubatraining_Repair" name="repair-editView" extends="_local">
         <property name="employee" view="_minimal"/>
     </view>
+    <view entity="cubatraining_Repair" name="repair-browseView" extends="_minimal">
+        <property name="employee" view="_minimal">
+            <property name="email"/>
+        </property>
+    </view>
+    <view entity="cubatraining_CarServiceCenter" name="carServiceCenter-view-with-Employee-Customer-Repair"
+          extends="_local">
+        <property name="city" view="_minimal"/>
+        <property name="employees" view="_minimal" fetch="AUTO">
+            <property name="carServiceCenter" view="_minimal"/>
+            <property name="email"/>
+        </property>
+        <property name="customer" view="_minimal" fetch="AUTO">
+            <property name="phone"/>
+            <property name="email"/>
+            <property name="carServiceCenters" view="_minimal"/>
+        </property>
+        <property name="repair" view="_minimal" fetch="AUTO">
+            <property name="employee" view="_minimal">
+                <property name="email"/>
+            </property>
+            <property name="carServiceCenter" view="_minimal"/>
+        </property>
+    </view>
 </views>

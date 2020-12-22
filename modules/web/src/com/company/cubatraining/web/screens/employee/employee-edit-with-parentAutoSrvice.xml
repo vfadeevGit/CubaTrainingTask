@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
-        caption="msg://employeeEdit.caption"
+        caption="msg://employeeEditWithParentAutoService.caption"
         focusComponent="form"
         messagesPack="com.company.cubatraining.web.screens.employee">
     <data>
@@ -17,13 +17,17 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="employeeDc">
             <column width="350px">
-                <pickerField id="carServiceCenterField" caption="Service center" editable="false" enable="false"
-                             property="carServiceCenter"/>
                 <textField id="firstNameField" property="firstName"/>
                 <textField id="lastNameField" property="lastName"/>
                 <dateField id="birthDateField" property="birthDate"/>
                 <textField id="emailField" property="email"/>
-                <textField id="salaryField" property="salary" datatype="decimal"/>
+                <textField id="salaryField" property="salary"/>
+                <pickerField id="carServiceCenterField" property="carServiceCenter">
+                    <actions>
+                        <action id="lookup" type="picker_lookup"/>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

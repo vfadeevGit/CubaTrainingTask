@@ -47,8 +47,8 @@ create table CUBATRAINING_REPAIR (
     DELETED_BY varchar(50),
     --
     DESCRIPTION varchar(255) not null,
-    CENTER_ID varchar(36) not null,
     EMPLOYEE_ID varchar(36) not null,
+    CAR_SERVICE_CENTER_ID varchar(36) not null,
     --
     primary key (ID)
 )^
@@ -87,8 +87,8 @@ create table CUBATRAINING_EMPLOYEE (
     LAST_NAME varchar(255) not null,
     BIRTH_DATE date not null,
     EMAIL varchar(255),
-    SALARY integer,
-    CAR_SERVICE_CENTER_ID varchar(36),
+    SALARY decimal(19, 2),
+    CAR_SERVICE_CENTER_ID varchar(36) not null,
     --
     primary key (ID)
 )^

@@ -23,15 +23,20 @@ public class Repair extends StandardEntity {
     @Composition
     @OnDelete(DeletePolicy.CASCADE)
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CENTER_ID")
-    private CarServiceCenter center;
-
-    @NotNull
-    @Composition
-    @OnDelete(DeletePolicy.CASCADE)
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "CAR_SERVICE_CENTER_ID")
+    private CarServiceCenter carServiceCenter;
+
+    public CarServiceCenter getCarServiceCenter() {
+        return carServiceCenter;
+    }
+
+    public void setCarServiceCenter(CarServiceCenter carServiceCenter) {
+        this.carServiceCenter = carServiceCenter;
+    }
 
     public Employee getEmployee() {
         return employee;
@@ -39,14 +44,6 @@ public class Repair extends StandardEntity {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public CarServiceCenter getCenter() {
-        return center;
-    }
-
-    public void setCenter(CarServiceCenter center) {
-        this.center = center;
     }
 
     public String getDescription() {

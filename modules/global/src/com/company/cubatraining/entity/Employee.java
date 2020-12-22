@@ -5,8 +5,11 @@ import com.haulmont.chile.core.annotations.NumberFormat;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Table(name = "CUBATRAINING_EMPLOYEE", indexes = {
@@ -33,13 +36,24 @@ public class Employee extends StandardEntity {
     @Email(message = "{msg://cubatraining_Employee.email.validation.Email}")
     private String email;
 
-    @NumberFormat(pattern = "$########0.##", decimalSeparator = ".")
+    @NumberFormat(pattern = "$0.00", decimalSeparator = ".")
     @Column(name = "SALARY")
-    private Integer salary;
+    @Positive
+    @DecimalMin("0")
+    private BigDecimal salary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CAR_SERVICE_CENTER_ID")
+    @NotNull
     private CarServiceCenter carServiceCenter;
+
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    public BigDecimal getSalary() {
+        return salary;
+    }
 
     public CarServiceCenter getCarServiceCenter() {
         return carServiceCenter;
@@ -47,14 +61,6 @@ public class Employee extends StandardEntity {
 
     public void setCarServiceCenter(CarServiceCenter carServiceCenter) {
         this.carServiceCenter = carServiceCenter;
-    }
-
-    public Integer getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Integer salary) {
-        this.salary = salary;
     }
 
     public String getEmail() {

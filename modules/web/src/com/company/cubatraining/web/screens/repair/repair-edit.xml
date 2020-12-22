@@ -6,23 +6,35 @@
     <data>
         <instance id="repairDc"
                   class="com.company.cubatraining.entity.Repair"
-                  view="repair-editView">
+                  view="repair-editView-with-ParentService-withEmployee">
             <loader/>
-            <instance id="employeeDc" property="employee"/>
+            <instance id="carServiceCenter" property="carServiceCenter"/>
         </instance>
+        <collection id="employeesDc" class="com.company.cubatraining.entity.Employee" view="_base">
+            <loader id="employeesDl">
+                <query>
+                    <![CDATA[select e from cubatraining_Employee e where e.carServiceCenter = :container_carServiceCenter]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <dialogMode height="600"
                 width="800"/>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="repairDc">
             <column width="350px">
+                <lookupField id="carAutoService" property="carServiceCenter" caption="msg://carAutoService.caption"
+                             enable="false"/>
                 <textField id="descriptionField" property="description"/>
-                <pickerField id="employeeField" property="employee">
-                    <actions>
-                        <action id="open_composition" type="picker_open_composition"/>
-                        <action id="clear" type="picker_clear"/>
-                    </actions>
-                </pickerField>
+                <lookupPickerField property="employee" optionsContainer="employeesDc" nullOptionVisible="false"
+                                   required="true">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                        </actions>
+                </lookupPickerField>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

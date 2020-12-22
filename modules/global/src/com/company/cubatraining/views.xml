@@ -28,4 +28,11 @@
             <property name="carServiceCenter" view="_minimal"/>
         </property>
     </view>
+    <view entity="cubatraining_Repair" name="repair-editView-with-ParentService-withEmployee" extends="_local">
+        <property name="employee" view="_minimal"/>
+        <property name="carServiceCenter" view="_minimal"/>
+    </view>
+    <view entity="cubatraining_Customer" name="customer-view" extends="_local">
+        <property name="carServiceCenters" view="_minimal"/>
+    </view>
 </views>

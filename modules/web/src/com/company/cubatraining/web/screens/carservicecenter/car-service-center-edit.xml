@@ -23,7 +23,7 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
     </facets>
-    <layout expand="editActions" spacing="true">
+    <layout expand="tabSheet" spacing="true">
         <form id="form" dataContainer="carServiceCenterDc">
             <column width="350px">
                 <textField id="nameServiceField" property="nameService"/>
@@ -32,17 +32,17 @@
                 <textField id="addressField" property="address"/>
             </column>
         </form>
-        <tabSheet height="auto">
-            <tab id="tabEmployees" caption="Employees" spacing="true" expand="EmployeeBox">
-                <groupBox id="EmployeeBox" spacing="true" expand="employeesTable">
-                    <table id="employeesTable" dataContainer="employeesDc">
+        <tabSheet id="tabSheet" height="auto">
+            <tab id="tabEmployees" caption="Employees" spacing="true" expand="employeeBox">
+                <groupBox id="employeeBox" spacing="true">
+                    <table id="employeesTable" dataContainer="employeesDc" width="100%">
                         <actions>
                             <action id="edit" type="edit">
                                 <properties>
                                     <property name="openMode" value="DIALOG"/>
                                 </properties>
                             </action>
-                            <action id="remove" type="remove"/>
+                            <action id="remove" type="remove"></action>
                             <action id="create" type="create">
                                 <properties>
                                     <property name="openMode" value="DIALOG"/>
@@ -62,11 +62,15 @@
                     </table>
                 </groupBox>
             </tab>
-            <tab id="tabCustomers" caption="Customers">
-                <groupBox id="customerBox" expand="customerTable">
-                    <table id="customerTable" dataContainer="customerDc">
+            <tab id="tabCustomers" caption="Customers" expand="customerBox">
+                <groupBox id="customerBox">
+                    <table id="customerTable" dataContainer="customerDc" width="100%">
                         <actions>
-                            <action id="add" type="add"/>
+                            <action id="add" type="add" caption="Add" trackSelection="true">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
@@ -81,16 +85,24 @@
                     </table>
                 </groupBox>
             </tab>
-            <tab id="tabRepairs" caption="Repairs">
-                <groupBox id="RepairBox" spacing="true" expand="repairsTable">
-                    <table id="repairsTable" dataContainer="repairsDC">
+            <tab id="tabRepairs" caption="Repairs" expand="repairBox">
+                <groupBox id="repairBox" spacing="true">
+                    <table id="repairsTable" dataContainer="repairsDC" width="100%">
                         <actions>
-                            <action id="add" type="add"/>
-                            <action id="edit" type="edit"/>
+                            <action id="create" type="create" caption="New">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
+                            <action id="edit" type="edit">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
                             <action id="remove" type="remove"/>
                         </actions>
                         <buttonsPanel alwaysVisible="true" margin="true">
-                            <button id="repairsTableAddBtn" action="repairsTable.add"/>
+                            <button id="repairsTableAddBtn" action="repairsTable.create"/>
                             <button id="repairsTableEditBtn" action="repairsTable.edit"/>
                             <button id="repairsTableRemoveBtn" action="repairsTable.remove"/>
                         </buttonsPanel>

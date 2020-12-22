@@ -8,5 +8,6 @@
               caption="mainMsg://menu_config.cubatraining_CarServiceCenter.browse"/>
         <item screen="cubatraining_Repair.browse" caption="mainMsg://menu_config.cubatraining_Repair.browse"/>
         <item screen="cubatraining_Employee.browse" caption="mainMsg://menu_config.cubatraining_Employee.browse"/>
+        <item screen="cubatraining_Customer.browse" caption="mainMsg://menu_config.cubatraining_Customer.browse"/>
     </menu>
 </menu-config>

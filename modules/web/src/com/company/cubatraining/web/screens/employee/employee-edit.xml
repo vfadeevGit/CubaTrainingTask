@@ -23,7 +23,8 @@
                 <textField id="lastNameField" property="lastName"/>
                 <dateField id="birthDateField" property="birthDate"/>
                 <textField id="emailField" property="email"/>
-                <currencyField id="salaryField" property="salary" caption="msg://salaryField.caption"/>
+                <currencyField id="salaryField" property="salary" caption="msg://salaryField.caption" currency="RUB"
+                               datatype="decimal"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

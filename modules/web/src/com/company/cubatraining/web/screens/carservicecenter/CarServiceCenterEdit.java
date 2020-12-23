@@ -1,24 +1,23 @@
 package com.company.cubatraining.web.screens.carservicecenter;
 
 import com.company.cubatraining.entity.City;
+import com.company.cubatraining.entity.Customer;
 import com.company.cubatraining.entity.Employee;
 import com.company.cubatraining.service.CityService;
-import com.company.cubatraining.web.screens.employee.EmployeeEdit;
 import com.haulmont.chile.core.model.Session;
 import com.haulmont.cuba.core.global.DataManager;
-import com.haulmont.cuba.core.global.Metadata;
-import com.haulmont.cuba.core.global.UserSessionSource;
 import com.haulmont.cuba.gui.Notifications;
-import com.haulmont.cuba.gui.components.Button;
-import com.haulmont.cuba.gui.components.EditorScreenFacet;
+import com.haulmont.cuba.gui.ScreenBuilders;
+import com.haulmont.cuba.gui.components.TabSheet;
+import com.haulmont.cuba.gui.components.VBoxLayout;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionPropertyContainer;
 import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.cubatraining.entity.CarServiceCenter;
-import com.haulmont.cuba.security.global.UserSession;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
 @UiController("cubatraining_CarServiceCenter.edit")
@@ -31,13 +30,11 @@ public class CarServiceCenterEdit extends StandardEditor<CarServiceCenter> {
     @Inject
     private DataManager dataManager;
     @Inject
-    private Session session;
-    @Inject
     private DataContext dataContext;
     @Inject
-    private CollectionPropertyContainer<Employee> employeesDc;
-    @Inject
     protected CityService cityService;
+    @Inject
+    private com.haulmont.cuba.gui.components.TabSheet tabSheet;
 
     @Install(to = "employeesTable.create", subject = "initializer")
     private void employeesTableCreateInitializer(Employee employee) {
@@ -52,12 +49,29 @@ public class CarServiceCenterEdit extends StandardEditor<CarServiceCenter> {
     public void onInitEntity(InitEntityEvent<CarServiceCenter> event) {
         List<City> defaultCityList = cityService.getDefaultCity();
         if (!defaultCityList.isEmpty()) {
-            event.getEntity().setCity(defaultCityList.get(0));}
-        else {
+            event.getEntity().setCity(defaultCityList.get(0));
+        } else {
             notifications.create(Notifications.NotificationType.TRAY)
                     .withCaption("No default City assigned")
                     .show();
-        };
+        }
+    }
+
+    @Subscribe(id = "customerDc", target = Target.DATA_CONTAINER)
+    public void onCustomerDcCollectionChange(CollectionContainer.CollectionChangeEvent<Customer> event) {
+        //int countRows = dataManager.load(Employee.class).query("select e from cubatraining_customer where e.id = :entityId")
+        //        .parameter("entityId",getEditedEntity().getUuid())
+        //        .list()
+        //        .size();
+
+        int countRows = getEditedEntity().getEmployees().size();
+        tabSheet.getTab("tabCustomers").setCaption("Customers ("+countRows+")");
+
+        /*notifications.create(Notifications.NotificationType.TRAY)
+                .withCaption("Customer Data Collection Event, customer rows count " + countRows)
+                .show();
+
+         */
     }
 
 }

@@ -36,7 +36,7 @@ public class Employee extends StandardEntity {
     @Email(message = "{msg://cubatraining_Employee.email.validation.Email}")
     private String email;
 
-    @NumberFormat(pattern = "$0.00", decimalSeparator = ".")
+    @NumberFormat(pattern = "0.00", decimalSeparator = ".")
     @Column(name = "SALARY")
     @Positive
     @DecimalMin("0")

@@ -62,7 +62,7 @@
                     </table>
                 </groupBox>
             </tab>
-            <tab id="tabCustomers" caption="Customers" expand="customerBox">
+            <tab id="tabCustomers" caption="Customers(0)" expand="customerBox">
                 <groupBox id="customerBox">
                     <table id="customerTable" dataContainer="customerDc" width="100%">
                         <actions>

@@ -105,6 +105,7 @@ create table CUBATRAINING_CITY (
     DELETED_BY varchar(50),
     --
     CITY_NAME varchar(255) not null,
+    IS_DEFAULT_CITY boolean,
     CITY_CODE varchar(255),
     --
     primary key (ID)

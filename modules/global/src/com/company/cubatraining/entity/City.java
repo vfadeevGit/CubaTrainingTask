@@ -23,8 +23,19 @@ public class City extends StandardEntity {
     @NotEmpty(message = "{msg://cubatraining_City.cityName.validation.NotEmpty}")
     private String cityName;
 
+    @Column(name = "IS_DEFAULT_CITY")
+    private Boolean isDefaultCity;
+
     @Column(name = "CITY_CODE")
     private String cityCode;
+
+    public Boolean getIsDefaultCity() {
+        return isDefaultCity;
+    }
+
+    public void setIsDefaultCity(Boolean isDefaultCity) {
+        this.isDefaultCity = isDefaultCity;
+    }
 
     public String getCityCode() {
         return cityCode;

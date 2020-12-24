@@ -29,6 +29,10 @@ public class Customer extends StandardEntity {
     @Column(name = "EMAIL")
     @Email(message = "{msg://cubatraining_Customer.email.validation.Email}")
     private String email;
+
+    @Column(name = "customerType", insertable = false, updatable = false)
+    private String customerType;
+
     @JoinTable(name = "CUBATRAINING_CAR_SERVICE_CENTER_CUSTOMER_LINK",
             joinColumns = @JoinColumn(name = "CUSTOMER_ID"),
             inverseJoinColumns = @JoinColumn(name = "CAR_SERVICE_CENTER_ID"))
@@ -41,6 +45,14 @@ public class Customer extends StandardEntity {
 
     public void setCarServiceCenters(List<CarServiceCenter> carServiceCenters) {
         this.carServiceCenters = carServiceCenters;
+    }
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
     }
 
     public String getEmail() {

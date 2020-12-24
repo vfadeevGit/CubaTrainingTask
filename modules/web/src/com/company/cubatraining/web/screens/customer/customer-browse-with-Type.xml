@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://customerBrowseWithType.caption"
+        focusComponent="customersTable"
+        messagesPack="com.company.cubatraining.web.screens.customer">
+    <data readOnly="true">
+        <collection id="customersDc"
+                    class="com.company.cubatraining.entity.Customer"
+                    view="customer-browseView-with-Type">
+            <loader id="customersDl">
+                <query>
+                    <![CDATA[select e from cubatraining_Customer e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="customersTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="customersTable"
+                dataLoader="customersDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="customersTable"
+                    width="100%"
+                    dataContainer="customersDc"
+                    multiselect="true">
+            <actions>
+                <action id="refresh" type="refresh"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="phone"/>
+                <column id="email"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshBtn" action="customersTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -36,4 +36,7 @@
         <property name="carServiceCenters" view="_minimal"/>
     </view>
     <view entity="cubatraining_City" name="city-view-browse" extends="_local"/>
+    <view entity="cubatraining_Customer" name="customer-browseView-with-Type" extends="_local">
+        <property name="carServiceCenters" view="_minimal"/>
+    </view>
 </views>

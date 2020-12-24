@@ -8,8 +8,8 @@ import com.haulmont.chile.core.model.Session;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.ScreenBuilders;
-import com.haulmont.cuba.gui.components.TabSheet;
-import com.haulmont.cuba.gui.components.VBoxLayout;
+import com.haulmont.cuba.gui.UiComponents;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionPropertyContainer;
 import com.haulmont.cuba.gui.model.DataContext;
@@ -34,11 +34,21 @@ public class CarServiceCenterEdit extends StandardEditor<CarServiceCenter> {
     @Inject
     protected CityService cityService;
     @Inject
-    private com.haulmont.cuba.gui.components.TabSheet tabSheet;
+    private TabSheet tabSheet;
+    @Inject
+    private UiComponents uiComponents;
+
+    public Component generateCustomerType(Customer entity) {
+        //Try PlainTextCell here for faster response
+        Label<String> customerType = uiComponents.create(Label.TYPE_STRING);
+        customerType.setValue(entity.getCustomerType().trim().contains("COMP")  ? "Company" : "Individual");
+        return customerType;
+    }
 
     @Install(to = "employeesTable.create", subject = "initializer")
     private void employeesTableCreateInitializer(Employee employee) {
-        /*String serviceMessage = getEditedEntity().getNameService();
+        /* Before understanding of DataCollection Inheritanca
+        String serviceMessage = getEditedEntity().getNameService();
         notifications.create(Notifications.NotificationType.HUMANIZED)
                 .withCaption(serviceMessage)
                 .show();*/

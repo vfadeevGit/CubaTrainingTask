@@ -19,6 +19,14 @@
                 </query>
             </loader>
         </collection>
+        <collection id="customersTypesDc" class="com.company.cubatraining.entity.Customer">
+            <view extends="_local"/>
+            <loader id="customersTypesDl">
+                <query>
+                    <![CDATA[select e from cubatraining_Customer e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -74,6 +82,7 @@
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
+                            <column id="type" caption="Type" generator="generateCustomerType"/>
                             <column id="name"/>
                             <column id="phone"/>
                             <column id="email"/>

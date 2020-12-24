@@ -6,5 +6,7 @@
         <item screen="cubatraining_City.browse" caption="mainMsg://menu_config.cubatraining_City.browse"/>
         <item screen="cubatraining_CarServiceCenter.browse"
               caption="mainMsg://menu_config.cubatraining_CarServiceCenter.browse"/>
+        <item screen="cubatraining_CustomerWithType.browse"
+              caption="mainMsg://menu_config.cubatraining_CustomerWithType.browse"/>
     </menu>
 </menu-config>

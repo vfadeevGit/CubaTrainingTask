@@ -2,7 +2,9 @@ package com.company.cubatraining.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotNull;
         @Index(name = "IDX_CUBATRAINING_CITY", columnList = "CITY_NAME")
 })
 @Entity(name = "cubatraining_City")
+@PublishEntityChangedEvents
 @NamePattern("%s|cityName")
 public class City extends StandardEntity {
     private static final long serialVersionUID = -4783880174132504705L;
@@ -51,5 +54,10 @@ public class City extends StandardEntity {
 
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+    @PostConstruct
+    public void postConstruct() {
+        this.setIsDefaultCity(false);
     }
 }

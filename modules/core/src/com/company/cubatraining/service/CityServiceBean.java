@@ -50,4 +50,15 @@ public class CityServiceBean implements CityService {
         entityCity.setIsDefaultCity(false);
     }
 
+    @Override
+    public boolean checkCityWithNameExists(String searchName, UUID editedId) {
+        List<City> cityList = dataManager.load(City.class)
+                .query("select e from cubatraining_City e where e.cityName = :searchName and e.id <> :editedId")
+                .parameter("searchName", searchName)
+                .parameter("editedId", editedId)
+                .view("city-view-browse")
+                .list();
+        return !cityList.isEmpty();
+    }
+
 }

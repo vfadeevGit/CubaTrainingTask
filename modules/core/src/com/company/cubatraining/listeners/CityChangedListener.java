@@ -20,19 +20,12 @@ import java.util.UUID;
 public class CityChangedListener {
 
     @Inject
-    DataManager dataManager;
-    @Inject
-    private Messages messages;
-    @Inject
-    private Logger log;
-    @Inject
     private CityService cityService;
 
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void afterCommit(EntityChangedEvent<City, UUID> event) {
 
         AttributeChanges changes = event.getChanges();
-        //Boolean resResetDefaultCity = cityService.resetDefaultCity(event.getEntityId().getValue());
         if (changes.isChanged("isDefaultCity")) {
             Boolean preDefaultCityStatus = changes.getOldValue("isDefaultCity");
             if (!preDefaultCityStatus) {

@@ -1,11 +1,14 @@
 package com.company.cubatraining.web.screens.city;
 
 import com.company.cubatraining.service.CityService;
+import com.haulmont.cuba.core.entity.Entity;
 import com.haulmont.cuba.core.global.CommitContext;
 import com.haulmont.cuba.core.global.DataManager;
+import com.haulmont.cuba.core.global.EntityStates;
 import com.haulmont.cuba.gui.Dialogs;
 import com.haulmont.cuba.gui.Notifications;
 import com.haulmont.cuba.gui.components.DialogAction;
+import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.cubatraining.entity.City;
 import sun.awt.AppContext;
@@ -31,17 +34,40 @@ public class CityEdit extends StandardEditor<City> {
 
     @Subscribe
     public void onAfterCommitChanges(AfterCommitChangesEvent event) {
-        City thisEntity = getEditedEntity();
-        if (thisEntity.getIsDefaultCity())
-        {
-            //Service reset Application variant
-            if (cityService.resetDefaultCity(thisEntity.getId()))
+
+        City thisEntity = getEditedEntityContainer().getItem();
+        try {
+            if (thisEntity.getIsDefaultCity())
+            {
+                //Service reset Application variant
+            /*if (cityService.resetDefaultCity(thisEntity.getId()))
                 notifications.create(Notifications.NotificationType.TRAY)
                         .withCaption("Default cityies checkup dropped in database");
 
-            /* UI using datamanger application variant
-                localContextResetDefaultCity(thisEntity.getId());
              */
+
+                // UI using datamanger application variant
+                localContextResetDefaultCity(thisEntity.getId());
+            }
+        } catch (Exception e)
+        {
+            notifications.create(Notifications.NotificationType.TRAY)
+                    .withCaption("Default city checkbox not checked");
+        }
+
+    }
+
+    @Subscribe(target = Target.DATA_CONTEXT)
+    public void onPreCommit(DataContext.PreCommitEvent event) {
+        for (Entity<City> city : event.getModifiedInstances())
+        {
+            if (cityService.checkCityWithNameExists(city.getValue("cityName"), city.getValue("id"))) {
+                notifications.create(Notifications.NotificationType.TRAY)
+                        .withCaption("Alert")
+                        .withDescription("City with name "+city.getValue("cityName")+ " already exists! Entity not saved")
+                        .show();
+                event.preventCommit();
+            }
         }
     }
 

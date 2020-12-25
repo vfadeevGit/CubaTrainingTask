@@ -43,14 +43,14 @@
         <tabSheet id="tabSheet" height="auto">
             <tab id="tabEmployees" caption="Employees" spacing="true" expand="employeeBox">
                 <groupBox id="employeeBox" spacing="true">
-                    <table id="employeesTable" dataContainer="employeesDc" width="100%">
+                    <table id="employeesTable" emptyStateMessage="Press New to fill in the Table" dataContainer="employeesDc" width="100%">
                         <actions>
                             <action id="edit" type="edit">
                                 <properties>
                                     <property name="openMode" value="DIALOG"/>
                                 </properties>
                             </action>
-                            <action id="remove" type="remove"></action>
+                            <action id="remove" type="remove"/>
                             <action id="create" type="create">
                                 <properties>
                                     <property name="openMode" value="DIALOG"/>
@@ -72,7 +72,7 @@
             </tab>
             <tab id="tabCustomers" caption="Customers(0)" expand="customerBox">
                 <groupBox id="customerBox">
-                    <table id="customerTable" dataContainer="customerDc" width="100%">
+                    <table id="customerTable" emptyStateMessage="Press Add to fill in the Table" dataContainer="customerDc" width="100%">
                         <actions>
                             <action id="add" type="add" caption="Add" trackSelection="true">
                                 <properties>
@@ -82,7 +82,7 @@
                             <action id="exclude" type="exclude"/>
                         </actions>
                         <columns>
-                            <column id="type" caption="Type" generator="generateCustomerType"/>
+                            <column id="type" caption="Type"/>
                             <column id="name"/>
                             <column id="phone"/>
                             <column id="email"/>
@@ -96,7 +96,7 @@
             </tab>
             <tab id="tabRepairs" caption="Repairs" expand="repairBox">
                 <groupBox id="repairBox" spacing="true">
-                    <table id="repairsTable" dataContainer="repairsDC" width="100%">
+                    <table id="repairsTable" emptyStateMessage="Press New to fill in the Table" dataContainer="repairsDC" width="100%">
                         <actions>
                             <action id="create" type="create" caption="New">
                                 <properties>
@@ -124,6 +124,7 @@
             </tab>
         </tabSheet>
         <hbox id="editActions" align="BOTTOM_RIGHT" spacing="true">
+            <button id="commit" action="windowCommit"/>
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>

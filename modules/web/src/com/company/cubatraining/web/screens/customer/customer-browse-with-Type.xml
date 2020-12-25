@@ -6,13 +6,15 @@
         messagesPack="com.company.cubatraining.web.screens.customer">
     <data readOnly="true">
         <collection id="customersDc"
-                    class="com.company.cubatraining.entity.Customer"
-                    view="customer-browseView-with-Type">
+                    class="com.company.cubatraining.entity.Customer">
             <loader id="customersDl">
                 <query>
                     <![CDATA[select e from cubatraining_Customer e]]>
                 </query>
             </loader>
+            <view extends="customer-view">
+                <property name="customerType"/>
+            </view>
         </collection>
     </data>
     <dialogMode height="600"
@@ -32,6 +34,7 @@
                 <action id="refresh" type="refresh"/>
             </actions>
             <columns>
+                <column id="customerType" caption="msg://customerType.caption"/>
                 <column id="name"/>
                 <column id="phone"/>
                 <column id="email"/>

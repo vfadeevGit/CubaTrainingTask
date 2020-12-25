@@ -15,4 +15,6 @@ public interface CityService {
     boolean resetDefaultCity(UUID editedCityId);
 
     void dropDefaultCity(City city);
+
+    boolean checkCityWithNameExists(String name, UUID editedId);
 }

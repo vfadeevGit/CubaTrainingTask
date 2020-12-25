@@ -80,10 +80,6 @@ public class CityEdit extends StandardEditor<City> {
                 .list()
                 ;
 
-        notifications.create(Notifications.NotificationType.TRAY)
-                .withCaption(cityList.toString())
-                .show();
-
         CommitContext commitContext = new CommitContext();
         if (!cityList.isEmpty()) {
             for (City city : cityList) {

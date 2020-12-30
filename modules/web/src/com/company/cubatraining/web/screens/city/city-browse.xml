@@ -33,9 +33,9 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="isDefaultCity" caption="msg://isDefaultCity.caption"/>
-                <column id="cityName"/>
-                <column id="cityCode"/>
+                <column id="isDefault" caption="msg://isDefault.caption"/>
+                <column id="name"/>
+                <column id="code"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

@@ -1,6 +1,5 @@
 package com.company.cubatraining.entity;
 
-import com.haulmont.chile.core.annotations.Composition;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
@@ -17,13 +16,13 @@ public class Repair extends StandardEntity {
 
     @NotNull
     @Column(name = "DESCRIPTION", nullable = false)
+    @Lob
     private String description;
 
     @NotNull
-    @Composition
     @OnDelete(DeletePolicy.CASCADE)
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "EMPLOYEE_ID")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

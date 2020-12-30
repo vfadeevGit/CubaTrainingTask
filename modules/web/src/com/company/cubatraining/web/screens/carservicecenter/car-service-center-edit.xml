@@ -42,7 +42,7 @@
     <layout expand="tabSheet" spacing="true">
         <form id="form" dataContainer="carServiceCenterDc">
             <column width="350px">
-                <textField id="nameServiceField" property="name"/>
+                <textField id="nameServiceField" property="name" caption="Service name"/>
                 <textField id="phoneField" property="phone"/>
                 <lookupPickerField id="cityField" optionsContainer="citiesDc" property="city"/>
                 <textField id="addressField" property="address"/>

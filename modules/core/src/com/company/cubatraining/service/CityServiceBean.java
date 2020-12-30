@@ -22,7 +22,7 @@ public class CityServiceBean implements CityService {
     @Override
     public List<City> getDefaultCity() {
         return dataManager.load(City.class)
-                .query("select e from cubatraining_City e where e.isDefaultCity = TRUE")
+                .query("select e from cubatraining_City e where e.isDefault = TRUE")
                 .view("city-view-browse")
                 .list();
     }
@@ -33,7 +33,7 @@ public class CityServiceBean implements CityService {
 
         try (Transaction tx = persistence.createTransaction()) {
             EntityManager entityManager = persistence.getEntityManager();
-            List<City> cityList = entityManager.createQuery("select e from cubatraining_City e where e.isDefaultCity = TRUE and e.id <> :editedEntityId")
+            List<City> cityList = entityManager.createQuery("select e from cubatraining_City e where e.isDefault = TRUE and e.id <> :editedEntityId")
                     .setParameter("editedEntityId", currentCityId)
                     .getResultList();
             if (!cityList.isEmpty()) {
@@ -47,13 +47,13 @@ public class CityServiceBean implements CityService {
 
     @Override
     public void dropDefaultCity(City entityCity){
-        entityCity.setIsDefaultCity(false);
+        entityCity.setIsDefault(false);
     }
 
     @Override
     public boolean checkCityWithNameExists(String searchName, UUID editedId) {
         List<City> cityList = dataManager.load(City.class)
-                .query("select e from cubatraining_City e where e.cityName = :searchName and e.id <> :editedId")
+                .query("select e from cubatraining_City e where e.name = :searchName and e.id <> :editedId")
                 .parameter("searchName", searchName)
                 .parameter("editedId", editedId)
                 .view("city-view-browse")

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @javax.persistence.DiscriminatorValue("COMP")
 @Table(name = "CUBATRAINING_COMPANY")
@@ -15,7 +16,8 @@ import javax.persistence.Table;
 public class Company extends Customer {
     private static final long serialVersionUID = -6993518614085924686L;
 
-    @Column(name = "INN", unique = true)
+    @Column(name = "INN", nullable = false, unique = true)
+    @NotNull
     private String inn;
 
     public String getInn() {

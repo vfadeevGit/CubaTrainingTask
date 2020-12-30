@@ -4,60 +4,53 @@ import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.PublishEntityChangedEvents;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "CUBATRAINING_CITY", indexes = {
-        @Index(name = "IDX_CUBATRAINING_CITY", columnList = "CITY_NAME")
+        @Index(name = "IDX_CUBATRAINING_CITY_UNQ", columnList = "NAME")
 })
 @Entity(name = "cubatraining_City")
 @PublishEntityChangedEvents
-@NamePattern("%s|cityName")
+@NamePattern("%s|name")
 public class City extends StandardEntity {
     private static final long serialVersionUID = -4783880174132504705L;
 
+    @Column(name = "NAME", nullable = false)
     @NotNull
-    @Column(name = "CITY_NAME", nullable = false, unique = true)
-    @NotEmpty(message = "{msg://cubatraining_City.cityName.validation.NotEmpty}")
-    private String cityName;
+    private String name;
 
-    @Column(name = "IS_DEFAULT_CITY")
-    private Boolean isDefaultCity;
+    @Column(name = "IS_DEFAULT")
+    private Boolean isDefault = false;
 
-    @Column(name = "CITY_CODE")
-    private String cityCode;
+    @Column(name = "CODE", unique = true)
+    private String code;
 
-    public Boolean getIsDefaultCity() {
-        return isDefaultCity;
+    public String getCode() {
+        return code;
     }
 
-    public void setIsDefaultCity(Boolean isDefaultCity) {
-        this.isDefaultCity = isDefaultCity;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getCityCode() {
-        return cityCode;
+    public Boolean getIsDefault() {
+        return isDefault;
     }
 
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode;
+    public void setIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getName() {
+        return name;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @PostConstruct
-    public void postConstruct() {
-        this.setIsDefaultCity(false);
-    }
 }

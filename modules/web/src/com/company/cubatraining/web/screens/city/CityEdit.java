@@ -37,16 +37,16 @@ public class CityEdit extends StandardEditor<City> {
 
         City thisEntity = getEditedEntityContainer().getItem();
         try {
-            if (thisEntity.getIsDefaultCity())
+            if (thisEntity.getIsDefault())
             {
                 //Service reset Application variant
-            /*if (cityService.resetDefaultCity(thisEntity.getId()))
+            /*if (cityService.resetDefault(thisEntity.getId()))
                 notifications.create(Notifications.NotificationType.TRAY)
-                        .withCaption("Default cityies checkup dropped in database");
+                        .withCaption("Default cities checkup dropped in database");
 
              */
 
-                // UI using datamanger application variant
+                // UI using dataManger application variant
                 localContextResetDefaultCity(thisEntity.getId());
             }
         } catch (Exception e)
@@ -61,10 +61,10 @@ public class CityEdit extends StandardEditor<City> {
     public void onPreCommit(DataContext.PreCommitEvent event) {
         for (Entity<City> city : event.getModifiedInstances())
         {
-            if (cityService.checkCityWithNameExists(city.getValue("cityName"), city.getValue("id"))) {
+            if (cityService.checkCityWithNameExists(city.getValue("name"), city.getValue("id"))) {
                 notifications.create(Notifications.NotificationType.TRAY)
                         .withCaption("Alert")
-                        .withDescription("City with name "+city.getValue("cityName")+ " already exists! Entity not saved")
+                        .withDescription("City with name "+city.getValue("name")+ " already exists! Entity not saved")
                         .show();
                 event.preventCommit();
             }
@@ -74,7 +74,7 @@ public class CityEdit extends StandardEditor<City> {
     public void localContextResetDefaultCity(UUID editedEntityId) {
 
         List<City> cityList = dataManager.load(City.class)
-                .query("select e from cubatraining_City e where e.isDefaultCity = TRUE and e.id <> :editedEntityId")
+                .query("select e from cubatraining_City e where e.isDefault = TRUE and e.id <> :editedEntityId")
                 .parameter("editedEntityId", editedEntityId)
                 .view("city-view-browse")
                 .list()
@@ -83,7 +83,7 @@ public class CityEdit extends StandardEditor<City> {
         CommitContext commitContext = new CommitContext();
         if (!cityList.isEmpty()) {
             for (City city : cityList) {
-                city.setIsDefaultCity(false);
+                city.setIsDefault(false);
                 commitContext.addInstanceToCommit(city);
             }
         }

@@ -30,7 +30,7 @@ create table CUBATRAINING_INDIVIDUAL (
 create table CUBATRAINING_COMPANY (
     ID varchar(36) not null,
     --
-    INN varchar(255),
+    INN varchar(255) not null,
     --
     primary key (ID)
 )^
@@ -46,7 +46,7 @@ create table CUBATRAINING_REPAIR (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    DESCRIPTION varchar(255) not null,
+    DESCRIPTION longvarchar not null,
     EMPLOYEE_ID varchar(36) not null,
     CAR_SERVICE_CENTER_ID varchar(36) not null,
     --
@@ -67,7 +67,7 @@ create table CUBATRAINING_CAR_SERVICE_CENTER (
     NAME varchar(255) not null,
     PHONE varchar(255) not null,
     CITY_ID varchar(36),
-    ADDRESS varchar(255),
+    ADDRESS longvarchar,
     AUTHOR_ID varchar(36),
     --
     primary key (ID)
@@ -105,9 +105,9 @@ create table CUBATRAINING_CITY (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    CITY_NAME varchar(255) not null,
-    IS_DEFAULT_CITY boolean,
-    CITY_CODE varchar(255),
+    NAME varchar(255) not null,
+    IS_DEFAULT boolean,
+    CODE varchar(255),
     --
     primary key (ID)
 )^

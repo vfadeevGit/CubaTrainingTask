@@ -1,3 +1,0 @@
-2212020
-- CarAutoService edit view - when adding new Employee and parent enitity not saved throws "Unique constraint violation occured SYS_PK_12596"
-- Repair eidtor Employee look up when browse - shows all Employees

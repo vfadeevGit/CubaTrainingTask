@@ -1,11 +1,8 @@
 package com.company.cubatraining.web.screens.city;
 
 import com.haulmont.cuba.gui.Notifications;
-import com.haulmont.cuba.gui.components.Action;
 import com.haulmont.cuba.gui.components.GroupTable;
-import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.CollectionLoader;
-import com.haulmont.cuba.gui.model.InstanceContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.cubatraining.entity.City;
 
@@ -33,7 +30,7 @@ public class CityBrowse extends StandardLookup<City> {
         citiesDl.load();
 
         notifications.create(Notifications.NotificationType.TRAY)
-                .withCaption("City GroupTable data Collection "+city.getCityName()+" updated")
+                .withCaption("City GroupTable data Collection "+city.getName()+" updated")
                 .show();
     }
 }

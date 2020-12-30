@@ -15,9 +15,9 @@
     <layout expand="editActions" spacing="true">
         <form id="form" dataContainer="cityDc">
             <column width="350px">
-                <textField id="cityNameField" property="cityName"/>
-                <textField id="cityCodeField" property="cityCode"/>
-                <checkBox id="isDefaultCity" property="isDefaultCity" caption="Mark as default"/>
+                <textField id="cityNameField" property="name"/>
+                <textField id="cityCodeField" property="code"/>
+                <checkBox id="isDefault" property="isDefault" caption="Mark as default"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

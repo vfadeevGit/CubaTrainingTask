@@ -27,6 +27,14 @@
                 </query>
             </loader>
         </collection>
+        <collection id="usersDc" class="com.haulmont.cuba.security.entity.User">
+            <view extends="_local"/>
+            <loader id="usersDl">
+                <query>
+                    <![CDATA[select e from sec$User e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -34,10 +42,12 @@
     <layout expand="tabSheet" spacing="true">
         <form id="form" dataContainer="carServiceCenterDc">
             <column width="350px">
-                <textField id="nameServiceField" property="nameService"/>
+                <textField id="nameServiceField" property="name"/>
                 <textField id="phoneField" property="phone"/>
                 <lookupPickerField id="cityField" optionsContainer="citiesDc" property="city"/>
                 <textField id="addressField" property="address"/>
+                <lookupPickerField id="author" caption="msg://author.caption" optionsContainer="usersDc"
+                                   property="author"/>
             </column>
         </form>
         <tabSheet id="tabSheet" height="auto">
@@ -123,9 +133,9 @@
                 </groupBox>
             </tab>
         </tabSheet>
-        <hbox id="editActions" align="BOTTOM_RIGHT" spacing="true">
-            <button id="commit" action="windowCommit"/>
+        <hbox id="editActions" align="BOTTOM_LEFT" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="commit" action="windowCommit"/>
             <button id="closeBtn" action="windowClose"/>
         </hbox>
     </layout>

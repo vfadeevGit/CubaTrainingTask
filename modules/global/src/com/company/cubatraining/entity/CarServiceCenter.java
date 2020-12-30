@@ -8,22 +8,24 @@ import com.haulmont.cuba.core.entity.annotation.LookupType;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
 import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
 import com.haulmont.cuba.core.global.DeletePolicy;
+import com.haulmont.cuba.security.entity.User;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Table(name = "CUBATRAINING_CAR_SERVICE_CENTER", indexes = {
-        @Index(name = "IDX_CUBATRAINING_CAR_SERVICE_CENTER", columnList = "NAME_SERVICE")
+        @Index(name = "IDX_CUBATRAINING_CAR_SERVICE_CENTER", columnList = "NAME")
 })
 @Entity(name = "cubatraining_CarServiceCenter")
-@NamePattern("%s %s|nameService,city")
+@NamePattern("%s %s|name,city")
 public class CarServiceCenter extends StandardEntity {
     private static final long serialVersionUID = -5476964607361573601L;
 
     @NotNull
-    @Column(name = "NAME_SERVICE", nullable = false)
-    private String nameService;
+    @Column(name = "NAME", nullable = false)
+    private String name;
 
     @NotNull
     @Column(name = "PHONE", nullable = false)
@@ -51,6 +53,18 @@ public class CarServiceCenter extends StandardEntity {
     @OnDelete(DeletePolicy.CASCADE)
     @OneToMany(mappedBy = "carServiceCenter")
     private List<Repair> repair;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AUTHOR_ID")
+    private User author;
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 
     public List<Repair> getRepair() {
         return repair;
@@ -100,11 +114,12 @@ public class CarServiceCenter extends StandardEntity {
         this.customer = customer;
     }
 
-    public String getNameService() {
-        return nameService;
+    public String getName() {
+        return name;
     }
 
-    public void setNameService(String nameService) {
-        this.nameService = nameService;
+    public void setName(String name) {
+        this.name = name;
     }
+
 }

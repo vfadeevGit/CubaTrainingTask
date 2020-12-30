@@ -35,7 +35,7 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="nameService"/>
+                <column id="name"/>
                 <column id="phone"/>
                 <column id="city"/>
                 <column id="address"/>

@@ -15,6 +15,7 @@ import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
 import com.company.cubatraining.entity.CarServiceCenter;
+import com.haulmont.cuba.security.global.UserSession;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -37,6 +38,8 @@ public class CarServiceCenterEdit extends StandardEditor<CarServiceCenter> {
     private TabSheet tabSheet;
     @Inject
     private UiComponents uiComponents;
+    @Inject
+    private UserSession userSession;
 
     @Install(to = "customerTable.type", subject = "columnGenerator")
     private Component customerTableTypeColumnGenerator(Customer customer) {
@@ -67,6 +70,7 @@ public class CarServiceCenterEdit extends StandardEditor<CarServiceCenter> {
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<CarServiceCenter> event) {
+        event.getEntity().setAuthor(userSession.getUser());
         List<City> defaultCityList = cityService.getDefaultCity();
         if (!defaultCityList.isEmpty()) {
             event.getEntity().setCity(defaultCityList.get(0));

@@ -64,10 +64,11 @@ create table CUBATRAINING_CAR_SERVICE_CENTER (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    NAME_SERVICE varchar(255) not null,
+    NAME varchar(255) not null,
     PHONE varchar(255) not null,
     CITY_ID varchar(36),
     ADDRESS varchar(255),
+    AUTHOR_ID varchar(36),
     --
     primary key (ID)
 )^

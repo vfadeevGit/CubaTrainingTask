@@ -27,6 +27,7 @@
             </property>
             <property name="carServiceCenter" view="_minimal"/>
         </property>
+        <property name="author" view="_minimal"/>
     </view>
     <view entity="cubatraining_Repair" name="repair-editView-with-ParentService-withEmployee" extends="_local">
         <property name="employee" view="_minimal"/>

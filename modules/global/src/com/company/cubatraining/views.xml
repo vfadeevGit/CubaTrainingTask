@@ -39,4 +39,5 @@
     <view entity="cubatraining_Customer" name="customer-browseView-with-Type" extends="_local">
         <property name="carServiceCenters" view="_minimal"/>
     </view>
+    <view entity="cubatraining_Employee" name="employee-view" extends="_local"/>
 </views>

@@ -32,7 +32,11 @@
                 <lookupPickerField id="employeeField" property="employee" optionsContainer="employeesDc" nullOptionVisible="false"
                                    required="true" dataContainer="repairDc">
                         <actions>
-                            <action id="lookup" type="picker_lookup"/>
+                            <action id="lookup" type="picker_lookup">
+                                <properties>
+                                    <property name="openMode" value="DIALOG"/>
+                                </properties>
+                            </action>
                         </actions>
                 </lookupPickerField>
             </column>

@@ -1,8 +1,6 @@
 package com.company.cubatraining.web.screens.carservicecenter;
 
-import com.company.cubatraining.entity.City;
-import com.company.cubatraining.entity.Customer;
-import com.company.cubatraining.entity.Employee;
+import com.company.cubatraining.entity.*;
 import com.company.cubatraining.service.CityService;
 import com.haulmont.chile.core.model.Session;
 import com.haulmont.cuba.core.global.CommitContext;
@@ -14,7 +12,6 @@ import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.model.CollectionContainer;
 import com.haulmont.cuba.gui.model.DataContext;
 import com.haulmont.cuba.gui.screen.*;
-import com.company.cubatraining.entity.CarServiceCenter;
 import com.haulmont.cuba.security.global.UserSession;
 
 import javax.inject.Inject;
@@ -44,7 +41,7 @@ public class CarServiceCenterEdit extends StandardEditor<CarServiceCenter> {
     @Install(to = "customerTable.type", subject = "columnGenerator")
     private Component customerTableTypeColumnGenerator(Customer customer) {
         Label<String> customerType = uiComponents.create(Label.TYPE_STRING);
-        customerType.setValue(customer.getCustomerType().trim().contains("COMP")  ? "Company" : "Individual");
+        customerType.setValue(Company.class.isInstance(customer)  ? "Company" : "Individual");
         return customerType;
     }
 
@@ -71,9 +68,9 @@ public class CarServiceCenterEdit extends StandardEditor<CarServiceCenter> {
     @Subscribe
     public void onInitEntity(InitEntityEvent<CarServiceCenter> event) {
         event.getEntity().setAuthor(userSession.getUser());
-        List<City> defaultCityList = cityService.getDefaultCity();
-        if (!defaultCityList.isEmpty()) {
-            event.getEntity().setCity(defaultCityList.get(0));
+        City defaultCityList = cityService.getDefaultCity();
+        if (defaultCityList!=null) {
+            event.getEntity().setCity(defaultCityList);
         } else {
             notifications.create(Notifications.NotificationType.TRAY)
                     .withCaption("No default City assigned")

@@ -45,7 +45,6 @@ public class CityEdit extends StandardEditor<City> {
                         .withCaption("Default cities checkup dropped in database");
 
              */
-
                 // UI using dataManger application variant
                 localContextResetDefaultCity(thisEntity.getId());
             }
@@ -59,7 +58,7 @@ public class CityEdit extends StandardEditor<City> {
 
     @Subscribe(target = Target.DATA_CONTEXT)
     public void onPreCommit(DataContext.PreCommitEvent event) {
-        for (Entity<City> city : event.getModifiedInstances())
+        /*for (Entity<City> city : event.getModifiedInstances())
         {
             if (cityService.checkCityWithNameExists(city.getValue("name"), city.getValue("id"))) {
                 notifications.create(Notifications.NotificationType.TRAY)
@@ -68,7 +67,7 @@ public class CityEdit extends StandardEditor<City> {
                         .show();
                 event.preventCommit();
             }
-        }
+        }*/
     }
 
     public void localContextResetDefaultCity(UUID editedEntityId) {

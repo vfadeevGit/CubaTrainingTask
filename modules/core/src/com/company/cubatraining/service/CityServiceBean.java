@@ -20,11 +20,16 @@ public class CityServiceBean implements CityService {
     private Persistence persistence;
 
     @Override
-    public List<City> getDefaultCity() {
-        return dataManager.load(City.class)
-                .query("select e from cubatraining_City e where e.isDefault = TRUE")
-                .view("city-view-browse")
-                .list();
+    public City getDefaultCity() {
+        try {
+            return dataManager.load(City.class)
+                    .query("select e from cubatraining_City e where e.isDefault = TRUE")
+                    .view("city-view-browse")
+                    .one();
+        } catch (Exception e)
+        {
+            return null;
+        }
     }
 
     @Override

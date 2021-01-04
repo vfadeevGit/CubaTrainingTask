@@ -8,10 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Table(name = "CUBATRAINING_CITY", indexes = {
-        @Index(name = "IDX_CUBATRAINING_CITY_UNQ", columnList = "NAME")
+        @Index(name = "IDX_CUBATRAINING_CITY", columnList = "NAME")
 })
 @Entity(name = "cubatraining_City")
 @PublishEntityChangedEvents
@@ -19,8 +18,7 @@ import javax.validation.constraints.NotNull;
 public class City extends StandardEntity {
     private static final long serialVersionUID = -4783880174132504705L;
 
-    @Column(name = "NAME", nullable = false)
-    @NotNull
+    @Column(name = "NAME", unique = true)
     private String name;
 
     @Column(name = "IS_DEFAULT")

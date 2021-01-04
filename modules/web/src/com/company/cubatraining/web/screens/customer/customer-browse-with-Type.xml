@@ -12,9 +12,6 @@
                     <![CDATA[select e from cubatraining_Customer e]]>
                 </query>
             </loader>
-            <view extends="customer-view">
-                <property name="customerType"/>
-            </view>
         </collection>
     </data>
     <dialogMode height="600"
@@ -34,7 +31,7 @@
                 <action id="refresh" type="refresh"/>
             </actions>
             <columns>
-                <column id="customerType" caption="msg://customerType.caption"/>
+                <column id="type" caption="msg://customerType.caption"/>
                 <column id="name"/>
                 <column id="phone"/>
                 <column id="email"/>

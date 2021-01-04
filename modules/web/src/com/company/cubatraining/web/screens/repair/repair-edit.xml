@@ -28,7 +28,7 @@
             <column width="350px">
                 <lookupField id="carAutoService" property="carServiceCenter" caption="msg://carAutoService.caption"
                              enable="false"/>
-                <textField id="descriptionField" property="description"/>
+                <textArea id="descriptionField" property="description" caption="Repair description"/>
                 <lookupPickerField id="employeeField" property="employee" optionsContainer="employeesDc" nullOptionVisible="false"
                                    required="true" dataContainer="repairDc">
                         <actions>

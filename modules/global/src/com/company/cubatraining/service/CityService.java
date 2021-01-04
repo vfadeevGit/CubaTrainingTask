@@ -10,7 +10,7 @@ public interface CityService {
 
     String NAME = "cubatraining_CityService";
 
-    List<City> getDefaultCity();
+    City getDefaultCity();
 
     boolean resetDefaultCity(UUID editedCityId);
 

@@ -105,7 +105,7 @@ create table CUBATRAINING_CITY (
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
     --
-    NAME varchar(255) not null,
+    NAME varchar(255),
     IS_DEFAULT boolean,
     CODE varchar(255),
     --

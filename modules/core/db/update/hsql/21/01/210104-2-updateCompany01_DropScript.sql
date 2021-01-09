@@ -1,0 +1,10 @@
+alter table CUBATRAINING_COMPANY drop column PHONE__U76492 cascade ;
+alter table CUBATRAINING_COMPANY drop column DELETED_BY__U35908 cascade ;
+alter table CUBATRAINING_COMPANY drop column UPDATE_TS__U23998 cascade ;
+alter table CUBATRAINING_COMPANY drop column EMAIL__U81816 cascade ;
+alter table CUBATRAINING_COMPANY drop column DELETE_TS__U70484 cascade ;
+alter table CUBATRAINING_COMPANY drop column UPDATED_BY__U97531 cascade ;
+alter table CUBATRAINING_COMPANY drop column NAME__U80635 cascade ;
+alter table CUBATRAINING_COMPANY drop column CREATED_BY__U73904 cascade ;
+alter table CUBATRAINING_COMPANY drop column CREATE_TS__U82866 cascade ;
+alter table CUBATRAINING_COMPANY drop column VERSION__U41383 cascade ;

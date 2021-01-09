@@ -8,7 +8,7 @@ create table CUBATRAINING_CUSTOMER (
     UPDATED_BY varchar(50),
     DELETE_TS timestamp,
     DELETED_BY varchar(50),
-    customerType varchar(31),
+    TYPE varchar(31),
     --
     NAME varchar(255) not null,
     PHONE varchar(255),

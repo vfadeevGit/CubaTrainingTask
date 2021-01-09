@@ -9,10 +9,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@DiscriminatorValue("NONE")
 @Table(name = "CUBATRAINING_CUSTOMER")
 @Entity(name = "cubatraining_Customer")
 @NamePattern("%s|name")
-@DiscriminatorColumn(name = "customerType", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Customer extends StandardEntity {
     private static final long serialVersionUID = 4588690893075184637L;

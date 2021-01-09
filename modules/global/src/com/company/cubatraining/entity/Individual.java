@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 @javax.persistence.DiscriminatorValue("INDIVID")
 @Table(name = "CUBATRAINING_INDIVIDUAL")
 @Entity(name = "cubatraining_Individual")
-@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 @NamePattern("%s|passportNo")
+@PrimaryKeyJoinColumn(name = "ID", referencedColumnName = "ID")
 public class Individual extends Customer {
     private static final long serialVersionUID = 5836761616803951406L;
 

@@ -1,0 +1,55 @@
+Personaly detected
+2212020
+- CarAutoService edit view - when adding new Employee and parent enitity not saved throws "Unique constraint violation occured SYS_PK_12596"
+- Repair eidtor Employee look up when browse - shows all Employees
+
+
+General_done
+
+Используется HSQLDB вместо PostgreSQL.
+Избыточность в именах атрибутов сущностей, например:
+City.cityName
+City.cityCode
+City.isDefaultCity
+CarServiceCenter.nameService
+CustomerType - все константы имеют суффикс _TYPE
+
+
+Entities_done
+
+City
+name задано как уникальное, хотя в реальной жизни могут быть города с одинаковым именем.
+А вот code я бы сделал уникальным.
+Избыточная валидация @NotEmpty.
+CustomerType
+Не используется?
+Customer
+Странный атрибут customerType. Очевидно добавлялся руками с нарушением конвенций SQL.
+Атрибут name имеет настройку @CaseConversion.
+Company
+Почему inn не mandatory?
+unique проставлен в обход UI?
+Repair
+description стоит пометить как Unlimited. В 255 символов описание не уместить. done
+employee - неправильная связь. Должно быть: Association, m-t-o. - test ScreenBuilder_done
+CarServiceCenter
+address стоит пометить как Unlimited. В 255 символов адрес не уместить. done
+
+
+Services & co.
+
+CityService
+getDefaultCity должен возвращать один город. done
+
+Screens
+CityEdit
+Я так подозреваю, что onPreCommit нужен, чтобы не получать исключение о нарушении уникальности? Если да, то нужно почитать доку._не отрабатывает исключение? прошу проверить_
+CustomerBrowse
+Неиспользуемая реализация.
+Реализация неверная. В качестве типа выводится значение Discriminator, которое для конечного пользователя не информативно. Нет колонок со значениями для конкретных сущностей Физ.лицо и Компания.
+EmployeeEdit_done
+Зачем два крана?
+CarServiceCenterEdit
+Поправить разметку экрана:
+Атовысота для таблиц не круто
+editActions зачем то выровнены по правому краю. _done

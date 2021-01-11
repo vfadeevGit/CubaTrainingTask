@@ -50,10 +50,11 @@
                                    property="author"/>
             </column>
         </form>
-        <tabSheet id="tabSheet" height="auto">
+        <tabSheet id="tabSheet">
             <tab id="tabEmployees" caption="Employees" spacing="true" expand="employeeBox">
                 <groupBox id="employeeBox" spacing="true">
-                    <table id="employeesTable" emptyStateMessage="Press New to fill in the Table" dataContainer="employeesDc" width="100%">
+                    <table id="employeesTable" emptyStateMessage="Press New to fill in the Table" dataContainer="employeesDc" width="100%"
+                           height="100%">
                         <actions>
                             <action id="edit" type="edit">
                                 <properties>
@@ -67,7 +68,7 @@
                                 </properties>
                             </action>
                         </actions>
-                        <buttonsPanel alwaysVisible="true" margin="true">
+                        <buttonsPanel alwaysVisible="true">
                             <button id="employeesTableCreateBtn" action="employeesTable.create" caption="New"/>
                             <button id="employeesTableEditBtn" action="employeesTable.edit"/>
                             <button id="employeesTableRemoveBtn" action="employeesTable.remove" caption="Delete"/>
@@ -82,7 +83,8 @@
             </tab>
             <tab id="tabCustomers" caption="Customers(0)" expand="customerBox">
                 <groupBox id="customerBox">
-                    <table id="customerTable" emptyStateMessage="Press Add to fill in the Table" dataContainer="customerDc" width="100%">
+                    <table id="customerTable" emptyStateMessage="Press Add to fill in the Table" dataContainer="customerDc" width="100%"
+                           height="100%">
                         <actions>
                             <action id="add" type="add" caption="Add" trackSelection="true">
                                 <properties>
@@ -97,7 +99,7 @@
                             <column id="phone"/>
                             <column id="email"/>
                         </columns>
-                        <buttonsPanel margin="true">
+                        <buttonsPanel>
                             <button action="customerTable.add"/>
                             <button action="customerTable.exclude"/>
                         </buttonsPanel>
@@ -106,7 +108,8 @@
             </tab>
             <tab id="tabRepairs" caption="Repairs" expand="repairBox">
                 <groupBox id="repairBox" spacing="true">
-                    <table id="repairsTable" emptyStateMessage="Press New to fill in the Table" dataContainer="repairsDC" width="100%">
+                    <table id="repairsTable" emptyStateMessage="Press New to fill in the Table" dataContainer="repairsDC" width="100%"
+                           height="100%">
                         <actions>
                             <action id="create" type="create" caption="New">
                                 <properties>
@@ -120,7 +123,7 @@
                             </action>
                             <action id="remove" type="remove"/>
                         </actions>
-                        <buttonsPanel alwaysVisible="true" margin="true">
+                        <buttonsPanel alwaysVisible="true">
                             <button id="repairsTableAddBtn" action="repairsTable.create"/>
                             <button id="repairsTableEditBtn" action="repairsTable.edit"/>
                             <button id="repairsTableRemoveBtn" action="repairsTable.remove"/>

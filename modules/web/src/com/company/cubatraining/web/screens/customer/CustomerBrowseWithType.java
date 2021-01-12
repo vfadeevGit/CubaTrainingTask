@@ -1,6 +1,7 @@
 package com.company.cubatraining.web.screens.customer;
 
 import com.company.cubatraining.entity.Company;
+import com.company.cubatraining.entity.Individual;
 import com.haulmont.cuba.core.entity.KeyValueEntity;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.gui.Notifications;
@@ -55,8 +56,38 @@ public class CustomerBrowseWithType extends StandardLookup<Customer> {
         {
             customerType = "Individual";
         }
-        customerType+= " / "+addInfo;
+        //customerType+= " / "+addInfo;
         return new Table.PlainTextCell(customerType);
+    }
+
+    @Install(to = "customersTable.inn", subject = "columnGenerator")
+    private Component customersTableInnColumnGenerator(Customer customer) {
+
+        String companyInn = "-";
+        if (Company.class.isInstance(customer)) {
+            companyInn = dataManager.load(Company.class)
+                    .query("select a from cubatraining_Company a where a.id = :customerId")
+                    .view("company-view-only-inn")
+                    .parameter("customerId", customer.getUuid())
+                    .one().getInn();
+        }
+
+        return new Table.PlainTextCell(companyInn);
+    }
+
+    @Install(to = "customersTable.passportNo", subject = "columnGenerator")
+    private Component customersTablePassportNoColumnGenerator(Customer customer) {
+
+        String individualPassportNo = "-";
+        if (Individual.class.isInstance(customer)) {
+            individualPassportNo = dataManager.load(Individual.class)
+                    .query("select a from cubatraining_Individual a where a.id = :customerId")
+                    .view("individual-view-only-passportNo")
+                    .parameter("customerId", customer.getUuid())
+                    .one().getPassportNo();
+        }
+
+        return new Table.PlainTextCell(individualPassportNo);
     }
 
 }

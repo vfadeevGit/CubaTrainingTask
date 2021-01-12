@@ -38,4 +38,6 @@
         <property name="carServiceCenters" view="_minimal"/>
     </view>
     <view entity="cubatraining_Employee" name="employee-view" extends="_local"/>
+    <view entity="cubatraining_Company" name="company-view-only-inn" extends="_minimal"/>
+    <view entity="cubatraining_Individual" name="individual-view-only-passportNo" extends="_minimal"/>
 </views>

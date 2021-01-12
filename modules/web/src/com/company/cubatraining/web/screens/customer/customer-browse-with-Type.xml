@@ -32,6 +32,8 @@
             </actions>
             <columns>
                 <column id="type" caption="msg://customerType.caption"/>
+                <column id="inn" caption="Inn"/>
+                <column id="passportNo" caption="Passport No"/>
                 <column id="name"/>
                 <column id="phone"/>
                 <column id="email"/>

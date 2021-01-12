@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 public class Company extends Customer {
     private static final long serialVersionUID = -6993518614085924686L;
 
-    @Column(name = "INN", nullable = false, unique = true)
+    @Column(name = "INN", nullable = false)
     @NotNull
     private String inn;
 

@@ -45,7 +45,7 @@
                 <textField id="nameServiceField" property="name" caption="Service name"/>
                 <textField id="phoneField" property="phone"/>
                 <lookupPickerField id="cityField" optionsContainer="citiesDc" property="city"/>
-                <textArea id="addressField" caption="Address"/>
+                <textArea id="addressField" caption="Address" property="address"/>
                 <lookupPickerField id="author" caption="msg://author.caption" optionsContainer="usersDc"
                                    property="author"/>
             </column>

@@ -1,0 +1,1 @@
+alter table CUBATRAINING_INDIVIDUAL add constraint FK_CUBATRAINING_INDIVIDUAL_ON_ID foreign key (ID) references CUBATRAINING_CUSTOMER(ID) on delete CASCADE;

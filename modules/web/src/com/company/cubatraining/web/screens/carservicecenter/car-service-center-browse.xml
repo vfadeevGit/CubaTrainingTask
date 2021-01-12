@@ -33,6 +33,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="list" type="listPrintForm" caption="msg://printlist"/>
             </actions>
             <columns>
                 <column id="name"/>
@@ -46,6 +47,7 @@
                 <button id="createBtn" action="carServiceCentersTable.create"/>
                 <button id="editBtn" action="carServiceCentersTable.edit"/>
                 <button id="removeBtn" action="carServiceCentersTable.remove"/>
+                <button id="listBtn" action="carServiceCentersTable.list"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
